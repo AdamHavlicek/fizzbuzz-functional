@@ -39,10 +39,10 @@ def array_to_list(xs):
     return result
 
 
-def list_to_array(listLike):
+def list_to_array(list_like):
     result = None
 
-    for element in reversed(listLike):
+    for element in reversed(list_like):
         result = pair(element)(result)
 
     return result
@@ -59,15 +59,17 @@ def fizzbuzz(n):
     def buzz():
         return 'Buzz' if n % 5 == 0 else ''
 
-    return fizz() + buzz() if fizz() + buzz() else n
+    return fizz() + buzz() or n
+
 
 def map(f):
     def inner(xs):
-        return None if xs is None else pair (f(head(xs))) (map (f) (tail(xs)))
+        return None if xs is None else pair (f(head(xs)))(map(f)(tail(xs)))
     return inner
+
 
 if __name__ == '__main__':
     my_range = range(1)(100)
     print(array_to_list(map(lambda x: fizzbuzz(x))(my_range)))
-    
+
     exit(0)
