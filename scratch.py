@@ -1,8 +1,7 @@
 # -*- encoding: UTF-8 -*-
 
 class Pair(object):
-    first = None
-    second = None
+    __slots__ = ('first', 'second')
 
     def __init__(self, first, second):
         self.first = first
@@ -29,12 +28,12 @@ def tail(p):
     return p.second
 
 
-def array_to_list(xs):
+def array_to_list(array):
     result = []
 
-    while xs is not None:
+    while array is not None:
         result.append(head(xs))
-        xs = tail(xs)
+        array = tail(xs)
 
     return result
 
@@ -63,8 +62,8 @@ def fizzbuzz(n):
 
 
 def map(f):
-    def inner(xs):
-        return None if xs is None else pair (f(head(xs)))(map(f)(tail(xs)))
+    def inner(array):
+        return None if array is None else pair(f(head(array)))(map(f)(tail(array)))
     return inner
 
 
